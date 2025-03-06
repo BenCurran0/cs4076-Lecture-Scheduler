@@ -4,7 +4,7 @@ package com.mycompany.tcpechoclient;
 import java.io.*;
 import java.net.*;
 
-public class TCPEchoServer {
+public class Server_23369205 {
     
     private static final int port = 1234;
 

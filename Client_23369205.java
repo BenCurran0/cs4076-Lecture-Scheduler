@@ -1,8 +1,10 @@
+
+
 package com.mycompany.tcpechoclient;
 import java.io.*;
 import java.net.*;
 
-public class TCPEchoClient {
+public class Client_23369205{
  private static InetAddress host;
     private static final int PORT = 1234;
 
@@ -55,3 +57,4 @@ public class TCPEchoClient {
     }
  } 
 }  
+
