@@ -55,7 +55,7 @@ public class Server_23369205 {
 
     private static String checkRequest(String request) {
 
-        String[] parts = request.split(" ");
+        String[] parts = request.split("_");
 
             String command = parts[0].toUpperCase();
             String moduleCode = parts[1];
@@ -81,15 +81,17 @@ public class Server_23369205 {
     }
 
     private static String addLecture(String moduleCode, String room, String time) {
-        int[] timeSplit  = time.split(-);
-        int start = timeSplit[0];
-        int end = timeSplit[1];
-        courseSchedule.put();
+        courseSchedule.put(moduleCode, room + "_" + time);
         return "Lecture added: " + moduleCode + " " + room + "  " + time;
     }
 
-    private static String removeLecture(String moduleCode){
-
+    private static String removeLecture(String moduleCode) {
+        if (courseSchedule.containsKey(moduleCode)) {
+            courseSchedule.remove(moduleCode);
+            return "Lecture removed: " + moduleCode;
+        } else {
+            return "Lecture not found: " + moduleCode;
+        }
     }
 
     private static String displaySchedule() {
