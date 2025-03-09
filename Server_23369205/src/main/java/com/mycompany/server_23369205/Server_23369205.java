@@ -1,13 +1,12 @@
-package com.mycompany.tcpechoclient;
+package com.mycompany.server_23369205;
 
 import java.io.*;
 import java.net.*;
-import java.util.HashMap;
 
 public class Server_23369205 {
     
     private static final int port = 1234;
-    private static HashMap<String, String> courseSchedule = new HashMap<>(); 
+    
 
     public static void main(String[] args) {
         ServerSocket socket = null;
@@ -28,8 +27,8 @@ public class Server_23369205 {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 
                 while ((clientRequest = in.readLine()) != null) {
-                    String response = checkRequest(clientRequest);
-                    out.println(response);
+                String response = RequestProcessor.checkRequest(clientRequest);
+                out.println(response);
                 }
 
                 clientSocket.close();
@@ -51,61 +50,6 @@ public class Server_23369205 {
             }
         }
     }
+   }
 
-
-    private static String checkRequest(String request) {
-
-        String[] parts = request.split("_");
-
-            String command = parts[0].toUpperCase();
-            String moduleCode = parts[1];
-
-            switch (command) {
-                case "ADD":
-                if (parts.length < 4) {
-                    return "Invalid ADD format";
-                }
-                return addLecture(moduleCode, parts[2], parts[3]);
-
-                case "REMOVE":
-                    removeLecture(moduleCode);
-                        return "Lecture removed: " + moduleCode;
-                    
-                case "DISPLAY":
-                    displaySchedule();
-                    
-                default:
-                    return "Unknown command";
-            
-        }
-    }
-
-    private static String addLecture(String moduleCode, String room, String time) {
-        courseSchedule.put(moduleCode, room + "_" + time);
-        return "Lecture added: " + moduleCode + " " + room + "  " + time;
-    }
-
-    private static String removeLecture(String moduleCode) {
-        if (courseSchedule.containsKey(moduleCode)) {
-            courseSchedule.remove(moduleCode);
-            return "Lecture removed: " + moduleCode;
-        } else {
-            return "Lecture not found: " + moduleCode;
-        }
-    }
-
-    private static String displaySchedule() {
-        if (courseSchedule.isEmpty()) {
-            return "No lectures scheduled";
-        }        
-
-        StringBuilder schedule = new StringBuilder();
-        for (String module : courseSchedule.keySet()) {
-            schedule.append(module).append("_").append(courseSchedule.get(module)).append("/");
-        }
-
-        return schedule.toString();
-    }
-
-    }
-}
+    
