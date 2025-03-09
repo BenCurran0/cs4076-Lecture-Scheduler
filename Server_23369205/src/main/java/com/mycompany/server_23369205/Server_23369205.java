@@ -15,31 +15,22 @@ public class Server_23369205 {
             socket = new ServerSocket(port);
             System.out.println("Server is waiting for connection from client");
 
-            
+                while(true){
                 Socket clientSocket = socket.accept();
                 System.out.println("Client connected from " + clientSocket.getInetAddress());
-                
-                BufferedReader in;
-                PrintWriter out;
-                String clientRequest;
-                
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-                
-                while ((clientRequest = in.readLine()) != null) {
-                String response = RequestProcessor.checkRequest(clientRequest);
-                out.println(response);
+                ClientHandler clientHandler = new ClientHandler(clientSocket);
+                new Thread(clientHandler).start();
                 }
+                
+                
             
         } 
         catch (IOException e) {
             System.out.println("IOException occurred: " + e.getMessage());
         }
         
-        
-    }
-    
-    
-   }
+       
+    }    
+  }
 
     
