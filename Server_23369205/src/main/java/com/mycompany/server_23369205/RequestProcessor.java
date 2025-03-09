@@ -16,16 +16,17 @@ public class RequestProcessor {
 
             String command = parts[0].toUpperCase();
             String moduleCode = parts[1];
+            String scheduleKey = parts[2]+"_"+parts[3]+parts[4]; 
 
             switch (command) {
                 case "ADD":
                 if (parts.length < 4) {
                     return "Invalid ADD format";
                 }
-                return scheduleOperations.addLecture(moduleCode, parts[2], parts[3]);
+                return scheduleOperations.addLecture(moduleCode, scheduleKey);
 
                 case "REMOVE":
-                    scheduleOperations.removeLecture(moduleCode);
+                    scheduleOperations.removeLecture(scheduleKey);
                         return "Lecture removed: " + moduleCode;
                     
                 case "DISPLAY":

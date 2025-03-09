@@ -13,17 +13,20 @@ public class scheduleOperations {
     
     private static HashMap<String, String> courseSchedule = new HashMap<>(); 
     
-    static String addLecture(String moduleCode, String room, String time) {
-        courseSchedule.put(moduleCode, room + "_" + time);
-        return "Lecture added: " + moduleCode + " " + room + "  " + time;
+    static String addLecture(String moduleCode, String scheduleKey) {
+        if (courseSchedule.containsKey(scheduleKey)) {
+            return "Error: Room is already booked for " + courseSchedule.get(scheduleKey);
+        }
+        courseSchedule.put(scheduleKey,moduleCode);
+        return "Lecture added: " + moduleCode + "_" + scheduleKey;
     }
 
-    static String removeLecture(String moduleCode) {
-        if (courseSchedule.containsKey(moduleCode)) {
-            courseSchedule.remove(moduleCode);
-            return "Lecture removed: " + moduleCode;
+    static String removeLecture(String scheduleKey) {
+        if (courseSchedule.containsKey(scheduleKey)) {
+            String removedLecture = courseSchedule.remove(scheduleKey);
+            return "Lecture removed: " + removedLecture;
         } else {
-            return "Lecture not found: " + moduleCode;
+            return "Lecture not found";
         }
     }
 
@@ -33,8 +36,8 @@ public class scheduleOperations {
         }        
 
         StringBuilder schedule = new StringBuilder();
-        for (String module : courseSchedule.keySet()) {
-            schedule.append(module).append("_").append(courseSchedule.get(module)).append("/");
+        for (String key : courseSchedule.keySet()) {
+            schedule.append(courseSchedule.get(key)).append("_").append(key).append("/");
         }
 
         return schedule.toString();
