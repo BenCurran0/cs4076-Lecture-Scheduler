@@ -29,7 +29,7 @@ public class RequestProcessor {
                     return scheduleOperations.removeLecture(scheduleKey);
                     
                 case "DISPLAY":
-                    scheduleOperations.displaySchedule();
+                    return scheduleOperations.displaySchedule();
                     
                 default:
                     return "Unknown command";
