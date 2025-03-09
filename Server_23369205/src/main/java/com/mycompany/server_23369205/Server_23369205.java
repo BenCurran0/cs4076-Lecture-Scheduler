@@ -95,6 +95,17 @@ public class Server_23369205 {
     }
 
     private static String displaySchedule() {
+        if (courseSchedule.isEmpty()) {
+            return "No lectures scheduled";
+        }        
+
+        StringBuilder schedule = new StringBuilder();
+        for (String module : courseSchedule.keySet()) {
+            schedule.append(module).append("_").append(courseSchedule.get(module)).append("/");
+        }
+
+        return schedule.toString();
+    }
 
     }
 }
