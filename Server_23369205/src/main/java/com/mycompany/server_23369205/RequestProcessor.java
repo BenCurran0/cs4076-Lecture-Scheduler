@@ -26,8 +26,7 @@ public class RequestProcessor {
                 return scheduleOperations.addLecture(moduleCode, scheduleKey);
 
                 case "REMOVE":
-                    scheduleOperations.removeLecture(scheduleKey);
-                        return "Lecture removed: " + moduleCode;
+                    return scheduleOperations.removeLecture(scheduleKey);
                     
                 case "DISPLAY":
                     scheduleOperations.displaySchedule();

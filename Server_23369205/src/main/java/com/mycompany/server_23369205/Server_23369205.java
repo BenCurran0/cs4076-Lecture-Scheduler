@@ -30,26 +30,16 @@ public class Server_23369205 {
                 String response = RequestProcessor.checkRequest(clientRequest);
                 out.println(response);
                 }
-
-                clientSocket.close();
-                System.out.println("Connection with client is now closed");
             
         } 
         catch (IOException e) {
             System.out.println("IOException occurred: " + e.getMessage());
         }
         
-        finally {
-            try {
-                if (socket != null  && !socket.isClosed()) {
-                    socket.close();
-                    System.out.println("Server socket is now closed.");
-                }
-            } catch (IOException e) {
-                System.out.println("Unable to disconnect/close!");
-            }
-        }
+        
     }
+    
+    
    }
 
     
