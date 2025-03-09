@@ -15,17 +15,20 @@ public class RequestProcessor {
         String[] parts = request.split("_");
 
             String command = parts[0].toUpperCase();
-            String moduleCode = parts[1];
-            String scheduleKey = parts[2]+"_"+parts[3]+parts[4]; 
+            
 
             switch (command) {
                 case "ADD":
+                    String moduleCode = parts[1];
+                    String scheduleKey = parts[2]+"_"+parts[3]+"_"+parts[4]; 
                 if (parts.length < 4) {
                     return "Invalid ADD format";
                 }
                 return scheduleOperations.addLecture(moduleCode, scheduleKey);
 
                 case "REMOVE":
+                    
+                    scheduleKey = parts[2]+"_"+parts[3]+"_"+parts[4]; 
                     return scheduleOperations.removeLecture(scheduleKey);
                     
                 case "DISPLAY":
