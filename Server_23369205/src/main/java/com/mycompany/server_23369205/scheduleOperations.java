@@ -44,7 +44,7 @@ public class scheduleOperations {
     }
     
     
-    static String moveLecturesEarlier() {
+    synchronized static String moveLecturesEarlier() {
     String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     Thread[] threads = new Thread[days.length];
 
