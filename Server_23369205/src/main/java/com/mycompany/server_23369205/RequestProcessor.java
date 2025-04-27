@@ -34,6 +34,10 @@ public class RequestProcessor {
                 case "DISPLAY":
                     return scheduleOperations.displaySchedule();
                     
+                case "EARLY":
+                    String day = parts[2];
+                    return scheduleOperations.moveLecturesEarlier(day);
+    
                 default:
                     return "Unknown command";
             }
