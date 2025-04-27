@@ -50,16 +50,17 @@ public class scheduleOperations {
 
     for (int i = 0; i < days.length; i++) {
         String day = days[i];
+        
         threads[i] = new Thread(() -> shiftDayLectures(day));
         threads[i].start();
-    }
+        }
 
     for (Thread t : threads) {
         try {
             t.join();
         } catch (InterruptedException e) {
-            System.out.println("Thread interrupted: " + e.getMessage());
-        }
+            System.out.println( e.getMessage());
+            }
     }
 
     return "Moved lectures to earlier slots.";
