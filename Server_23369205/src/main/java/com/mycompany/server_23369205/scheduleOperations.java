@@ -81,7 +81,7 @@ public class scheduleOperations {
             return "No lectures to shift.";
         }
 
-    // Step 2: Try to move them to early slots
+    //  Try to move them to early slots
         for (String oldKey : tempDayLectures.keySet()) {
             String moduleCode = tempDayLectures.get(oldKey);
             String[] parts = oldKey.split("_"); // Room_Day_Time
@@ -104,6 +104,5 @@ public class scheduleOperations {
         }
         return "Attempted to move lectures to earlier slots.";
     }
-
 
 }
